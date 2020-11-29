@@ -1,0 +1,297 @@
+<html>
+
+<head>
+
+    <style>
+        #header {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 2px;
+        }
+
+        #section {
+            width: 1200px;
+            float: left;
+            padding: 30px;
+        }
+    </style>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://unpkg.com/formiojs@latest/dist/formio.full.min.css'>
+    <script src='https://unpkg.com/formiojs@latest/dist/formio.full.min.js'></script>
+
+    <script type='text/javascript'>
+
+        window.onload = function () {
+            // Formio.createForm(document.getElementById('builder'), 'https://examples.form.io/example').then(function(form) {
+
+            Formio.createForm(document.getElementById('builder'),
+
+                //  {"components":[{"label":"name","tableView":true,"key":"name","type":"textfield","input":true},{"type":"button","label":"Submit","key":"submit","disableOnInvalid":true,"input":true,"tableView":false}]
+
+                {
+                    "components": [
+                        {
+                            "label": "Name",
+                            "tableView": true,
+                            "validate": {
+                                "required": true
+                            },
+                            "key": "name",
+                            "type": "textfield",
+                            "input": true,
+                            "hideOnChildrenHidden": false
+                        },
+                        {
+                            "label": "Email",
+                            "tableView": true,
+                            "case": "mixed",
+                            "validate": {
+                                "required": true
+                            },
+                            "unique": true,
+                            "errorLabel": "enter email",
+                            "key": "email",
+                            "type": "email",
+                            "input": true,
+                            "hideOnChildrenHidden": false
+                        },
+                        {
+                            "label": "Phone Number",
+                            "tableView": true,
+                            "key": "phoneNumber",
+                            "type": "phoneNumber",
+                            "input": true,
+                            "hideOnChildrenHidden": false
+                        },
+                        {
+                            "label": "Quanity",
+                            "mask": false,
+                            "spellcheck": true,
+                            "tableView": false,
+                            "delimiter": false,
+                            "requireDecimal": false,
+                            "inputFormat": "plain",
+                            "key": "quanity",
+                            "type": "number",
+                            "input": true,
+                            "defaultValue": 5,
+                            "hideOnChildrenHidden": false
+                        },
+                        {
+                            "label": "Symptoms",
+                            "tableView": true,
+                            "multiple": true,
+                            "data": {
+                                "values": [
+                                    {
+                                        "label": "Headache",
+                                        "value": "headache"
+                                    },
+                                    {
+                                        "label": "heart problems",
+                                        "value": "heartProblems"
+                                    },
+                                    {
+                                        "label": "Diabetes",
+                                        "value": "diabetes"
+                                    },
+                                    {
+                                        "label": "Hypertension",
+                                        "value": "hypertension"
+                                    }
+                                ]
+                            },
+                            "selectThreshold": 0.3,
+                            "key": "symptoms",
+                            "type": "select",
+                            "indexeddb": {
+                                "filter": {}
+                            },
+                            "input": true
+                        },
+                        {
+                            "label": "Country",
+                            "tableView": true,
+                            "data": {
+                                "values": [
+                                    {
+                                        "label": "India",
+                                        "value": "india"
+                                    },
+                                    {
+                                        "label": "America",
+                                        "value": "america"
+                                    },
+                                    {
+                                        "label": "China",
+                                        "value": "china"
+                                    },
+                                    {
+                                        "label": "Japan",
+                                        "value": "japan"
+                                    }
+                                ]
+                            },
+                            "selectThreshold": 0.3,
+                            "key": "country",
+                            "type": "select",
+                            "indexeddb": {
+                                "filter": {}
+                            },
+                            "input": true,
+                            "hideOnChildrenHidden": false
+                        },
+                        {
+                            "label": "Date / Time",
+                            "tableView": false,
+                            "enableMinDateInput": false,
+                            "datePicker": {
+                                "disableWeekends": false,
+                                "disableWeekdays": false
+                            },
+                            "enableMaxDateInput": false,
+                            "key": "dateTime",
+                            "type": "datetime",
+                            "input": true,
+                            "widget": {
+                                "type": "calendar",
+                                "displayInTimezone": "viewer",
+                                "locale": "en",
+                                "useLocaleSettings": false,
+                                "allowInput": true,
+                                "mode": "single",
+                                "enableTime": true,
+                                "noCalendar": false,
+                                "format": "yyyy-MM-dd hh:mm a",
+                                "hourIncrement": 1,
+                                "minuteIncrement": 1,
+                                "time_24hr": false,
+                                "minDate": null,
+                                "disableWeekends": false,
+                                "disableWeekdays": false,
+                                "maxDate": null
+                            },
+                            "hideOnChildrenHidden": false
+                        },
+                        {
+                            "label": "Address",
+                            "autoExpand": false,
+                            "tableView": true,
+                            "validate": {
+                                "required": true,
+                                "minLength": 70,
+                                "maxLength": 120
+                            },
+                            "errorLabel": "enter address",
+                            "key": "address",
+                            "type": "textarea",
+                            "input": true,
+                            "hideOnChildrenHidden": false
+                        },
+                        {
+                            "label": "Password",
+                            "tableView": false,
+                            "case": "mixed",
+                            "validate": {
+                                "maxLength": 15,
+                                "minLength": 8
+                            },
+                            "key": "password",
+                            "type": "password",
+                            "input": true,
+                            "protected": true,
+                            "hideOnChildrenHidden": false
+                        },
+                        {
+                            "label": "colors",
+                            "optionsLabelPosition": "right",
+                            "tableView": false,
+                            "values": [
+                                {
+                                    "label": "red",
+                                    "value": "red",
+                                    "shortcut": ""
+                                },
+                                {
+                                    "label": "yellow",
+                                    "value": "yellow",
+                                    "shortcut": ""
+                                },
+                                {
+                                    "label": "green",
+                                    "value": "green",
+                                    "shortcut": ""
+                                },
+                                {
+                                    "label": "black",
+                                    "value": "black",
+                                    "shortcut": ""
+                                }
+                            ],
+                            "key": "colors",
+                            "type": "selectboxes",
+                            "input": true,
+                            "inputType": "checkbox",
+                            "defaultValue": {
+                                "": false
+                            }
+                        },
+                        {
+                            "label": "Gender",
+                            "optionsLabelPosition": "right",
+                            "inline": false,
+                            "tableView": false,
+                            "values": [
+                                {
+                                    "label": "Male",
+                                    "value": "male",
+                                    "shortcut": ""
+                                },
+                                {
+                                    "label": "Female",
+                                    "value": "female",
+                                    "shortcut": ""
+                                }
+                            ],
+                            "key": "gender",
+                            "properties": {
+                                "Male": "male",
+                                "Female": "female"
+                            },
+                            "type": "radio",
+                            "input": true,
+                            "defaultValue": "female"
+                        },
+                        {
+                            "type": "button",
+                            "label": "Submit",
+                            "key": "submit",
+                            "disableOnInvalid": true,
+                            "input": true,
+                            "tableView": false
+                        }
+                    ]
+                }
+
+                // }
+
+
+            )
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <div id="header">
+        <h1>Demo Form</h1>
+    </div>
+
+    <div id="section">
+        <div id='builder'></div>
+    </div>
+</body>
+
+</html>
